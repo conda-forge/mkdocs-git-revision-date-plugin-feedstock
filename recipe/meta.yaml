@@ -6,23 +6,23 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/mkdocs-git-revision-date-plugin-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/mkdocs-git-revision-date-plugin-{{ version }}.tar.gz
   sha256: 4abaef720763a64c952bed6829dcc180f67c97c60dd73914e90715e05d1cfb23
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
     - pip
-    - python >=3.4
+    - python {{ python_min }}
   run:
     - gitpython
     - jinja2
     - mkdocs >=0.17
-    - python >=3.4
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -31,6 +31,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin/
